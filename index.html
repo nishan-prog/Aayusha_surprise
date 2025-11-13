@@ -66,10 +66,14 @@ button:hover { background:#ff85c1; }
   display:none;
 }
 #teddyContainer img {
-  width:200px;
-  max-width:50vw;
+  width:250px; /* made bigger */
+  max-width:60vw;
   position:relative;
+  border-radius:10px;
+  box-shadow:0 0 15px rgba(0,0,0,0.5);
 }
+
+/* Speech bubble pointing downwards from lips */
 #speechBubble {
   position:absolute;
   background:rgba(255,255,255,0.9);
@@ -77,13 +81,23 @@ button:hover { background:#ff85c1; }
   padding:15px 20px;
   border-radius:20px;
   font-size:4vw;
-  max-width:60vw;
+  max-width:70vw;
   text-align:center;
-  top:40%; /* adjust to appear near lips */
+  top:25%; /* adjust to be near lips */
   left:50%;
   transform:translateX(-50%);
   display:none;
   box-shadow:0 0 10px rgba(0,0,0,0.5);
+}
+#speechBubble::after {
+  content: '';
+  position: absolute;
+  bottom: -15px; /* tail position */
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 15px 10px 0 10px;
+  border-style: solid;
+  border-color: rgba(255,255,255,0.9) transparent transparent transparent;
 }
 @media(max-width:768px){
   #speechBubble { font-size:6vw; max-width:80vw; }
