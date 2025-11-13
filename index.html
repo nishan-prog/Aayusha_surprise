@@ -51,36 +51,12 @@ h1 {
 }
 .flower::before { top:-10px; left:20px; }
 .flower::after { bottom:-10px; right:20px; }
-@keyframes dance {
-  0%,100% { transform: rotate(0deg) scale(1); }
-  50% { transform: rotate(10deg) scale(1.1); }
-}
-@keyframes glow {
-  0% { box-shadow:0 0 5px #ffb6c1; }
-  50% { box-shadow:0 0 15px #ff69b4; }
-  100% { box-shadow:0 0 5px #ffb6c1; }
-}
+@keyframes dance { 0%,100% { transform: rotate(0deg) scale(1); } 50% { transform: rotate(10deg) scale(1.1); } }
+@keyframes glow { 0% { box-shadow:0 0 5px #ffb6c1; } 50% { box-shadow:0 0 15px #ff69b4; } 100% { box-shadow:0 0 5px #ffb6c1; } }
 @keyframes fadeIn { from {opacity:0; transform:translateY(20px);} to {opacity:1; transform:translateY(0);} }
 
-input {
-  padding:10px;
-  border-radius:20px;
-  border:none;
-  width:240px;
-  font-size:1rem;
-  text-align:center;
-}
-button {
-  margin-top:20px;
-  padding:15px 30px;
-  border-radius:25px;
-  border:none;
-  background:#ff69b4;
-  color:white;
-  font-size:1.2rem;
-  cursor:pointer;
-  transition:0.3s;
-}
+input { padding:10px; border-radius:20px; border:none; width:240px; font-size:1rem; text-align:center; }
+button { margin-top:20px; padding:15px 30px; border-radius:25px; border:none; background:#ff69b4; color:white; font-size:1.2rem; cursor:pointer; transition:0.3s; }
 button:hover { background:#ff85c1; }
 
 #poem {
@@ -102,6 +78,7 @@ button:hover { background:#ff85c1; }
   display:block;
   opacity:0;
   transform:translateX(-100%);
+  transition: transform 1s, opacity 1s;
   white-space:nowrap;
 }
 
@@ -112,10 +89,7 @@ button:hover { background:#ff85c1; }
   opacity:0.7;
   animation:fall 10s linear infinite;
 }
-@keyframes fall {
-  from { transform: translateY(-10%) rotate(0deg); opacity:1; }
-  to { transform: translateY(110%) rotate(360deg); opacity:0; }
-}
+@keyframes fall { from { transform: translateY(-10%) rotate(0deg); opacity:1; } to { transform: translateY(110%) rotate(360deg); opacity:0; } }
 </style>
 </head>
 <body>
@@ -179,7 +153,6 @@ button:hover { background:#ff85c1; }
 <script>
 document.getElementById('submitBtn').addEventListener('click', () => {
   const answer = document.getElementById('answer').value;
-  console.log('Her answer:', answer);
 
   // Hide intro & question
   document.getElementById('question').style.display='none';
@@ -192,25 +165,23 @@ document.getElementById('submitBtn').addEventListener('click', () => {
 
   // Play music reliably
   const audio = document.getElementById('bgMusic');
-  audio.volume = 0.5;
-  audio.play().catch(() => {
+  audio.volume=0.5;
+  audio.play().catch(()=>{
     document.body.addEventListener('click', ()=> audio.play(), {once:true});
   });
 
-  // Lyrics sliding animation one line at a time
+  // Lyrics animation: horizontal only, centered
   const lines = poemEl.querySelectorAll('span');
   let index=0;
   function animateLine(){
     if(index>0){
       const prev=lines[index-1];
-      prev.style.transition='transform 1s, opacity 1s';
       prev.style.transform='translateX(100%)';
       prev.style.opacity=0;
     }
     if(index<lines.length){
       const line=lines[index];
-      line.style.transition='transform 1s, opacity 1s';
-      line.style.transform='translateX(0)';
+      line.style.transform='translateX(0)'; // horizontal only
       line.style.opacity=1;
       index++;
       setTimeout(animateLine, 2500);
@@ -234,6 +205,5 @@ for(let i=0;i<20;i++){
 // Twemoji parse
 window.addEventListener('load',()=>{twemoji.parse(document.body)});
 </script>
-
 </body>
 </html>
