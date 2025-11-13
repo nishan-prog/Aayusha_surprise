@@ -55,7 +55,7 @@ h1 {
 @keyframes glow { 0% { box-shadow:0 0 5px #ffb6c1; } 50% { box-shadow:0 0 15px #ff69b4; } 100% { box-shadow:0 0 5px #ffb6c1; } }
 @keyframes fadeIn { from {opacity:0; transform:translateY(20px);} to {opacity:1; transform:translateY(0);} }
 
-input { padding:10px; border-radius:20px; border:none; width:240px; font-size:1rem; text-align:center; }
+input { padding:10px; border-radius:20px; border:none; width:80%; max-width:300px; font-size:1rem; text-align:center; }
 button { margin-top:20px; padding:15px 30px; border-radius:25px; border:none; background:#ff69b4; color:white; font-size:1.2rem; cursor:pointer; transition:0.3s; }
 button:hover { background:#ff85c1; }
 
@@ -64,7 +64,7 @@ button:hover { background:#ff85c1; }
   top:50%;
   left:50%;
   transform:translate(-50%,-50%);
-  font-size:3rem;
+  font-size:3vw;
   font-weight:bold;
   color:white;
   text-shadow:2px 2px 8px #000;
@@ -78,7 +78,6 @@ button:hover { background:#ff85c1; }
   display:block;
   opacity:0;
   transform:translateX(-100%);
-  transition: transform 1s, opacity 1s;
   white-space:nowrap;
 }
 
@@ -90,6 +89,10 @@ button:hover { background:#ff85c1; }
   animation:fall 10s linear infinite;
 }
 @keyframes fall { from { transform: translateY(-10%) rotate(0deg); opacity:1; } to { transform: translateY(110%) rotate(360deg); opacity:0; } }
+
+@media(max-width:768px){
+  #poem { font-size:6vw; } 
+}
 </style>
 </head>
 <body>
@@ -159,7 +162,7 @@ document.getElementById('submitBtn').addEventListener('click', () => {
   document.querySelector('h1').style.display='none';
   document.getElementById('flowers').style.display='none';
 
-  // Show poem container
+  // Show poem
   const poemEl = document.getElementById('poem');
   poemEl.style.display='block';
 
@@ -170,10 +173,10 @@ document.getElementById('submitBtn').addEventListener('click', () => {
     document.body.addEventListener('click', ()=> audio.play(), {once:true});
   });
 
-  // Lyrics animation: horizontal only, centered
+  // Horizontal lyrics animation only
   const lines = poemEl.querySelectorAll('span');
   let index=0;
-  function animateLine(){
+  function showLine(){
     if(index>0){
       const prev=lines[index-1];
       prev.style.transform='translateX(100%)';
@@ -181,13 +184,13 @@ document.getElementById('submitBtn').addEventListener('click', () => {
     }
     if(index<lines.length){
       const line=lines[index];
-      line.style.transform='translateX(0)'; // horizontal only
+      line.style.transform='translateX(0)'; 
       line.style.opacity=1;
       index++;
-      setTimeout(animateLine, 2500);
+      setTimeout(showLine, 2500);
     }
   }
-  animateLine();
+  showLine();
 });
 
 // Floating petals
