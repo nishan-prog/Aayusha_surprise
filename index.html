@@ -64,25 +64,29 @@ button:hover { background:#ff85c1; }
   left:50%;
   transform:translate(-50%,-50%);
   display:none;
-  flex-direction:column;
-  align-items:center;
 }
 #teddyContainer img {
-  width:150px;
-  max-width:40vw;
+  width:200px;
+  max-width:50vw;
+  position:relative;
 }
 #speechBubble {
-  background:rgba(0,0,0,0.7);
+  position:absolute;
+  background:rgba(255,255,255,0.9);
+  color:#333;
   padding:15px 20px;
   border-radius:20px;
-  margin-top:15px;
   font-size:4vw;
-  max-width:80vw;
-  color:white;
+  max-width:60vw;
   text-align:center;
+  top:40%; /* adjust to appear near lips */
+  left:50%;
+  transform:translateX(-50%);
+  display:none;
+  box-shadow:0 0 10px rgba(0,0,0,0.5);
 }
 @media(max-width:768px){
-  #speechBubble { font-size:6vw; }
+  #speechBubble { font-size:6vw; max-width:80vw; }
 }
 
 .petal {
@@ -115,7 +119,7 @@ button:hover { background:#ff85c1; }
 </div>
 
 <div id="teddyContainer">
-  <img src="https://i.ibb.co/4M7Yc6X/teddy.png" alt="Teddy Bear"/>
+  <img src="1000006812.jpg" alt="Your Image" />
   <div id="speechBubble"></div>
 </div>
 
@@ -168,17 +172,18 @@ document.getElementById('submitBtn').addEventListener('click', () => {
   document.getElementById('flowers').style.display='none';
 
   const teddy = document.getElementById('teddyContainer');
-  teddy.style.display='flex';
+  const bubble = document.getElementById('speechBubble');
+  teddy.style.display='block';
+  bubble.style.display='block';
 
-  // Play music reliably
+  // Play music
   const audio = document.getElementById('bgMusic');
-  audio.volume=0.5;
+  audio.volume = 0.5;
   audio.play().catch(()=>{
     document.body.addEventListener('click', ()=> audio.play(), {once:true});
   });
 
   // Show poem line by line in speech bubble
-  const bubble = document.getElementById('speechBubble');
   let index = 0;
   function showLine(){
     if(index < poemLines.length){
