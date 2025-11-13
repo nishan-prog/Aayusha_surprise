@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For Aayusha :cherry_blossom:</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #f7e7f3, #e5f2ff);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Segoe UI', sans-serif;
+      color: #333;
+      text-align: center;
+    }
+    h1 {
+      font-size: 1.8rem;
+      color: #5b2c6f;
+      animation: fadeIn 3s ease;
+    }
+    #flowers {
+      display: flex;
+      gap: 15px;
+      margin: 20px 0;
+    }
+    .flower {
+      width: 60px;
+      height: 60px;
+      background: radial-gradient(circle, #ffb6c1 30%, #ff69b4 70%);
+      border-radius: 50%;
+      position: relative;
+      animation: dance 3s infinite ease-in-out;
+    }
+    .flower::before, .flower::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: radial-gradient(circle, #ffb6c1 30%, #ff69b4 70%);
+      border-radius: 50%;
+    }
+    .flower::before {
+      top: -10px;
+      left: 20px;
+    }
+    .flower::after {
+      bottom: -10px;
+      right: 20px;
+    }
+    @keyframes dance {
+      0%, 100% { transform: rotate(0deg) scale(1); }
+      50% { transform: rotate(10deg) scale(1.1); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    #question {
+      margin-top: 20px;
+    }
+    input {
+      padding: 10px;
+      border-radius: 20px;
+      border: none;
+      width: 240px;
+      font-size: 1rem;
+      text-align: center;
+    }
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      border-radius: 20px;
+      border: none;
+      background: #ff69b4;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #ff85c1;
+    }
+    #reveal {
+      display: none;
+      margin-top: 30px;
+      max-width: 600px;
+      animation: fadeIn 2s ease forwards;
+    }
+    #poem {
+      white-space: pre-line;
+      font-size: 1rem;
+      color: #4a235a;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    #photo {
+      margin-top: 20px;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    /* Floating petals */
+    .petal {
+      position: absolute;
+      background: pink;
+      border-radius: 50%;
+      opacity: 0.7;
+      animation: fall 10s linear infinite;
+    }
+    @keyframes fall {
+      from { transform: translateY(-10%) rotate(0deg); opacity: 1; }
+      to { transform: translateY(110%) rotate(360deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <audio autoplay loop>
+    <source src="https://cdn.pixabay.com/audio/2023/03/14/audio_1c9b56e7cb.mp3" type="audio/mpeg">
+  </audio>
+  <h1>:cherry_blossom: Hi Aayusha, we’ve been waiting for you...<br>Nish has made sure you’re looked after very well.<br>So come along :dizzy:</h1>
+  <div id="flowers">
+    <div class="flower"></div>
+    <div class="flower"></div>
+    <div class="flower"></div>
+  </div>
+  <div id="question">
+    <p>What’s the thing that made you fall in love with him?</p>
+    <input id="answer" type="text" placeholder="Type your answer..." />
+    <br>
+    <button onclick="showPoem()">Submit</button>
+  </div>
+  <div id="reveal">
+    <img id="photo" src="https://placehold.co/400x300?text=Your+Photo+Here" alt="You and Aayusha">
+    <div id="poem">
+      Honestly i am in love with you
+      is that what you want me to say
+      is that the collection of words
+      you dont expect to hear from me today
+      I thought it was pretty obvious
+      I dont know how it was easy to miss
+      honestly i am in love with you
+      and i dont think i can get any clearer than this
+      well i mean i could
+      i thought about you everyday
+      everytime that i saw you
+      i still has so much left to say
+      But then i didnt say it
+      honestly i was afraid
+      but everytime you left
+      i wish that you had stayed
+      and all these little actions and acts of service in my mind
+      my words try to catchup
+      but my feelings have never left behind
+      I'm going slightly crazy
+      is that waht you want me to say
+      because i know that i am messing up
+      i am the one pushung you away
+      trust me i am exhausted
+      but never of loving you
+      I have all these feelings that i thought
+      you already knew
+      But if you really didnt
+      there is a couple of things i must confess
+      I dont like lot of people
+      but i love you nevertheless
+      every time i see you the whole world goes quiet
+      and i am not used to this my mind loves to riot
+      but not about you that has always been clear
+      because if i wished for my perfect person
+      you would suddenly appear
+    </div>
+  </div>
+  <script>
+    function showPoem() {
+      document.getElementById('question').style.display = 'none';
+      document.getElementById('reveal').style.display = 'block';
+    }
+    // Floating petals generator
+    for (let i = 0; i < 15; i++) {
+      const petal = document.createElement('div');
+      petal.classList.add('petal');
+      const size = Math.random() * 10 + 10;
+      petal.style.width = size + 'px';
+      petal.style.height = size + 'px';
+      petal.style.left = Math.random() * 100 + '%';
+      petal.style.animationDuration = (8 + Math.random() * 5) + 's';
+      document.body.appendChild(petal);
+    }
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
