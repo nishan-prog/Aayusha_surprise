@@ -4,7 +4,6 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>For Aayusha 🌸</title>
-<script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js"></script>
 <style>
 body {
   margin:0;
@@ -59,26 +58,31 @@ input { padding:10px; border-radius:20px; border:none; width:80%; max-width:300p
 button { margin-top:20px; padding:15px 30px; border-radius:25px; border:none; background:#ff69b4; color:white; font-size:1.2rem; cursor:pointer; transition:0.3s; }
 button:hover { background:#ff85c1; }
 
-#poem {
+#teddyContainer {
   position:absolute;
   top:50%;
   left:50%;
   transform:translate(-50%,-50%);
-  font-size:3vw;
-  font-weight:bold;
-  color:white;
-  text-shadow:2px 2px 8px #000;
-  text-align:center;
-  line-height:1.5;
-  max-width:90%;
   display:none;
-  overflow:hidden;
+  flex-direction:column;
+  align-items:center;
 }
-#poem span {
-  display:block;
-  opacity:0;
-  transform:translateX(-100%);
-  white-space:nowrap;
+#teddyContainer img {
+  width:150px;
+  max-width:40vw;
+}
+#speechBubble {
+  background:rgba(0,0,0,0.7);
+  padding:15px 20px;
+  border-radius:20px;
+  margin-top:15px;
+  font-size:4vw;
+  max-width:80vw;
+  color:white;
+  text-align:center;
+}
+@media(max-width:768px){
+  #speechBubble { font-size:6vw; }
 }
 
 .petal {
@@ -89,10 +93,6 @@ button:hover { background:#ff85c1; }
   animation:fall 10s linear infinite;
 }
 @keyframes fall { from { transform: translateY(-10%) rotate(0deg); opacity:1; } to { transform: translateY(110%) rotate(360deg); opacity:0; } }
-
-@media(max-width:768px){
-  #poem { font-size:6vw; } 
-}
 </style>
 </head>
 <body>
@@ -114,57 +114,61 @@ button:hover { background:#ff85c1; }
   <button id="submitBtn">Submit</button>
 </div>
 
-<div id="poem">
-  <span>Honestly i am in love with you</span>
-  <span>is that what you want me to say</span>
-  <span>is that the collection of words</span>
-  <span>you dont expect to hear from me today</span>
-  <span>I thought it was pretty obvious</span>
-  <span>I dont know how it was easy to miss</span>
-  <span>honestly i am in love with you</span>
-  <span>and i dont think i can get any clearer than this</span>
-  <span>well i mean i could</span>
-  <span>i thought about you everyday</span>
-  <span>everytime that i saw you</span>
-  <span>i still has so much left to say</span>
-  <span>But then i didnt say it</span>
-  <span>honestly i was afraid</span>
-  <span>but everytime you left</span>
-  <span>i wish that you had stayed</span>
-  <span>and all these little actions and acts of service in my mind</span>
-  <span>my words try to catchup</span>
-  <span>but my feelings have never left behind</span>
-  <span>I'm going slightly crazy</span>
-  <span>is that waht you want me to say</span>
-  <span>because i know that i am messing up</span>
-  <span>i am the one pushung you away</span>
-  <span>trust me i am exhausted</span>
-  <span>but never of loving you</span>
-  <span>I have all these feelings that i thought</span>
-  <span>you already knew</span>
-  <span>But if you really didnt</span>
-  <span>there is a couple of things i must confess</span>
-  <span>I dont like lot of people</span>
-  <span>but i love you nevertheless</span>
-  <span>every time i see you the whole world goes quiet</span>
-  <span>and i am not used to this my mind loves to riot</span>
-  <span>but not about you that has always been clear</span>
-  <span>because if i wished for my perfect person</span>
-  <span>you would suddenly appear</span>
+<div id="teddyContainer">
+  <img src="https://i.ibb.co/4M7Yc6X/teddy.png" alt="Teddy Bear"/>
+  <div id="speechBubble"></div>
 </div>
 
 <script>
+const poemLines = [
+  "Hi Aayusha, Nish wants to say...",
+  "Honestly I am in love with you",
+  "is that what you want me to say",
+  "is that the collection of words",
+  "you don't expect to hear from me today",
+  "I thought it was pretty obvious",
+  "I don't know how it was easy to miss",
+  "honestly I am in love with you",
+  "and I don't think I can get any clearer than this",
+  "well I mean I could",
+  "I thought about you everyday",
+  "every time that I saw you",
+  "I still have so much left to say",
+  "But then I didn't say it",
+  "honestly I was afraid",
+  "but every time you left",
+  "I wish that you had stayed",
+  "and all these little actions and acts of service in my mind",
+  "my words try to catch up",
+  "but my feelings have never left behind",
+  "I'm going slightly crazy",
+  "is that what you want me to say",
+  "because I know that I am messing up",
+  "I am the one pushing you away",
+  "trust me I am exhausted",
+  "but never of loving you",
+  "I have all these feelings that I thought",
+  "you already knew",
+  "But if you really didn't",
+  "there is a couple of things I must confess",
+  "I don't like a lot of people",
+  "but I love you nevertheless",
+  "every time I see you the whole world goes quiet",
+  "and I am not used to this, my mind loves to riot",
+  "but not about you that has always been clear",
+  "because if I wished for my perfect person",
+  "you would suddenly appear"
+];
+
 document.getElementById('submitBtn').addEventListener('click', () => {
   const answer = document.getElementById('answer').value;
 
-  // Hide intro & question
   document.getElementById('question').style.display='none';
   document.querySelector('h1').style.display='none';
   document.getElementById('flowers').style.display='none';
 
-  // Show poem
-  const poemEl = document.getElementById('poem');
-  poemEl.style.display='block';
+  const teddy = document.getElementById('teddyContainer');
+  teddy.style.display='flex';
 
   // Play music reliably
   const audio = document.getElementById('bgMusic');
@@ -173,19 +177,12 @@ document.getElementById('submitBtn').addEventListener('click', () => {
     document.body.addEventListener('click', ()=> audio.play(), {once:true});
   });
 
-  // Horizontal lyrics animation only
-  const lines = poemEl.querySelectorAll('span');
-  let index=0;
+  // Show poem line by line in speech bubble
+  const bubble = document.getElementById('speechBubble');
+  let index = 0;
   function showLine(){
-    if(index>0){
-      const prev=lines[index-1];
-      prev.style.transform='translateX(100%)';
-      prev.style.opacity=0;
-    }
-    if(index<lines.length){
-      const line=lines[index];
-      line.style.transform='translateX(0)'; 
-      line.style.opacity=1;
+    if(index < poemLines.length){
+      bubble.textContent = poemLines[index];
       index++;
       setTimeout(showLine, 2500);
     }
@@ -204,9 +201,6 @@ for(let i=0;i<20;i++){
   petal.style.animationDuration=(8+Math.random()*5)+'s';
   document.body.appendChild(petal);
 }
-
-// Twemoji parse
-window.addEventListener('load',()=>{twemoji.parse(document.body)});
 </script>
 </body>
 </html>
