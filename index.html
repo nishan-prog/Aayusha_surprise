@@ -83,9 +83,7 @@ button:hover { background:#ff85c1; }
 @media(max-width:768px){ #speechText { font-size:6vw; max-width:80vw; } }
 
 /* Rainbow background */
-.rainbowBG {
-  animation: rainbowBG 5s infinite alternate;
-}
+.rainbowBG { animation: rainbowBG 5s infinite alternate; }
 @keyframes rainbowBG {
   0% { background:#ffadad; }
   25% { background:#ffd6a5; }
@@ -103,16 +101,20 @@ button:hover { background:#ff85c1; }
   justify-content:center; align-items:center;
   flex-direction:column;
   background:black;
+  overflow:hidden;
 }
 #travelImg {
   width:0; opacity:0;
   transition:width 4s ease-in-out, opacity 4s ease-in-out;
   max-width:90vw;
+  position:absolute;
 }
 #universeText {
   font-size:5vw; color:white;
   text-shadow:2px 2px 10px #000;
-  margin-top:20px;
+  position:absolute;
+  top:50%; left:50%;
+  transform:translate(-50%,-50%);
   opacity:0;
   transition:opacity 2s ease-in-out 4s;
 }
@@ -126,6 +128,19 @@ button:hover { background:#ff85c1; }
 @keyframes fall {
   from { transform:translateY(-10%) rotate(0deg); opacity:1; }
   to { transform:translateY(110%) rotate(360deg); opacity:0; }
+}
+
+/* Stars for light-speed effect */
+.star {
+  position:absolute;
+  width:2px; height:2px;
+  background:white; border-radius:50%;
+  animation:starMove linear infinite;
+  opacity:0.8;
+}
+@keyframes starMove {
+  0% { transform:translateY(0) scale(1); opacity:1; }
+  100% { transform:translateY(1000px) scale(2); opacity:0; }
 }
 </style>
 </head>
@@ -159,25 +174,27 @@ button:hover { background:#ff85c1; }
 </div>
 
 <div id="portal">
+  <div id="starsContainer"></div>
   <img id="travelImg" src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1950&q=80" alt="Universe">
-  <div id="universeText">Nothing… You’re just a universe</div>
+  <div id="universeText">Not much… you are his universe</div>
 </div>
 
 <script>
+// Lines for first question
 const lines1 = [
   "Honestly I am in love with you",
   "…",
   "You will always be my universe"
 ];
 
-// Play background music
+// Background music
 const audio = document.getElementById('bgMusic');
 audio.volume = 0.5;
 audio.play().catch(()=>{
   document.body.addEventListener('click', ()=> audio.play(), { once:true });
 });
 
-// First question submit
+// First question
 document.getElementById('submit1').addEventListener('click', ()=>{
   document.getElementById('question1').style.display='none';
   const speech = document.getElementById('speechContainer');
@@ -199,13 +216,24 @@ document.getElementById('submit1').addEventListener('click', ()=>{
   showLine();
 });
 
-// Second question submit
+// Second question
 document.getElementById('submit2').addEventListener('click', ()=>{
   document.getElementById('question2').style.display='none';
   document.body.classList.remove('rainbowBG');
 
   const portal = document.getElementById('portal');
   portal.style.display='flex';
+
+  // Add stars for light-speed effect
+  const starsContainer = document.getElementById('starsContainer');
+  for(let i=0;i<100;i++){
+    const star = document.createElement('div');
+    star.classList.add('star');
+    star.style.left = Math.random()*100+'%';
+    star.style.top = Math.random()*100+'%';
+    star.style.animationDuration = (2 + Math.random()*3)+'s';
+    starsContainer.appendChild(star);
+  }
 
   const img = document.getElementById('travelImg');
   setTimeout(()=>{
