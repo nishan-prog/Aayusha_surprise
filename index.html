@@ -6,108 +6,114 @@
 <title>For Aayusha 🌸</title>
 <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js"></script>
 <style>
-  /* Full-screen romantic background */
-  body {
-    margin: 0;
-    height: 100vh;
-    font-family: 'Segoe UI', sans-serif;
-    color: white;
-    text-align: center;
-    overflow: hidden;
-    background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
-    background-size: cover;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+  color: white;
+  text-align: center;
+  overflow: hidden;
+  background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 20px;
+}
 
-  h1 {
-    font-size: 2rem;
-    color: #fff;
-    text-shadow: 2px 2px 8px #000;
-    margin: 0;
-    animation: fadeIn 3s ease;
-  }
+h1 {
+  font-size: 2rem;
+  color: #fff;
+  text-shadow: 2px 2px 8px #000;
+  margin: 10px;
+  animation: fadeIn 3s ease;
+}
 
-  button {
-    margin-top: 30px;
-    padding: 15px 30px;
-    border-radius: 25px;
-    border: none;
-    background: #ff69b4;
-    color: white;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-  button:hover { background: #ff85c1; }
+#flowers {
+  display: flex;
+  gap: 15px;
+  margin: 20px 0;
+}
 
-  /* Flowers */
-  #flowers {
-    display: flex;
-    gap: 15px;
-    margin: 20px 0;
-  }
+.flower {
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle, #ffb6c1 30%, #ff69b4 70%);
+  border-radius: 50%;
+  position: relative;
+  animation: dance 3s infinite ease-in-out, glow 2s infinite alternate;
+}
+.flower::before, .flower::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, #ffb6c1 30%, #ff69b4 70%);
+  border-radius: 50%;
+}
+.flower::before { top: -10px; left: 20px; }
+.flower::after { bottom: -10px; right: 20px; }
 
-  .flower {
-    width: 60px;
-    height: 60px;
-    background: radial-gradient(circle, #ffb6c1 30%, #ff69b4 70%);
-    border-radius: 50%;
-    position: relative;
-    animation: dance 3s infinite ease-in-out, glow 2s infinite alternate;
-  }
-  .flower::before, .flower::after {
-    content: '';
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    background: radial-gradient(circle, #ffb6c1 30%, #ff69b4 70%);
-    border-radius: 50%;
-  }
-  .flower::before { top: -10px; left: 20px; }
-  .flower::after { bottom: -10px; right: 20px; }
+@keyframes dance {
+  0%,100% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(10deg) scale(1.1); }
+}
+@keyframes glow {
+  0% { box-shadow: 0 0 5px #ffb6c1; }
+  50% { box-shadow: 0 0 15px #ff69b4; }
+  100% { box-shadow: 0 0 5px #ffb6c1; }
+}
+@keyframes fadeIn { from { opacity:0; transform:translateY(20px);} to{opacity:1; transform:translateY(0);} }
 
-  @keyframes dance {
-    0%,100% { transform: rotate(0deg) scale(1); }
-    50% { transform: rotate(10deg) scale(1.1); }
-  }
-  @keyframes glow {
-    0% { box-shadow: 0 0 5px #ffb6c1; }
-    50% { box-shadow: 0 0 15px #ff69b4; }
-    100% { box-shadow: 0 0 5px #ffb6c1; }
-  }
+input {
+  padding: 10px;
+  border-radius: 20px;
+  border: none;
+  width: 240px;
+  font-size: 1rem;
+  text-align: center;
+}
+button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+  background: #ff69b4;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+button:hover { background: #ff85c1; }
 
-  @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity:1; transform: translateY(0); } }
+#poem {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3rem;
+  font-weight: bold;
+  color: white;
+  text-shadow: 2px 2px 8px #000;
+  text-align: center;
+  line-height: 1.5;
+  max-width: 90%;
+  display: none; /* hidden initially */
+}
+#poem span { display:block; opacity:0; }
 
-  /* Floating petals */
-  .petal {
-    position: absolute;
-    background: pink;
-    border-radius: 50%;
-    opacity: 0.7;
-    animation: fall 10s linear infinite;
-  }
-  @keyframes fall {
-    from { transform: translateY(-10%) rotate(0deg); opacity:1; }
-    to { transform: translateY(110%) rotate(360deg); opacity:0; }
-  }
-
-  /* Poem style (lyrics video effect) */
-  #poem {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 3rem;
-    font-weight: bold;
-    color: white;
-    text-shadow: 2px 2px 8px #000;
-    text-align: center;
-    line-height: 1.5;
-  }
-  #poem span { display: block; opacity: 0; transform: translateY(50px); }
+.petal {
+  position: absolute;
+  background: pink;
+  border-radius: 50%;
+  opacity: 0.7;
+  animation: fall 10s linear infinite;
+}
+@keyframes fall {
+  from { transform: translateY(-10%) rotate(0deg); opacity:1; }
+  to { transform: translateY(110%) rotate(360deg); opacity:0; }
+}
 </style>
 </head>
 <body>
@@ -122,7 +128,12 @@
   <div class="flower"></div>
 </div>
 
-<button onclick="startExperience()">Start 🌟</button>
+<div id="question">
+  <p>What’s the thing that made you fall in love with him?</p>
+  <input type="text" id="answer" placeholder="Type your answer..." />
+  <br>
+  <button onclick="submitAnswer()">Submit</button>
+</div>
 
 <div id="poem">
   <span>Honestly i am in love with you</span>
@@ -164,44 +175,56 @@
 </div>
 
 <script>
-function startExperience() {
-  // Play music
+function submitAnswer() {
+  const answer = document.getElementById('answer').value;
+  console.log("Her answer:", answer); // optional
+
+  // Play music reliably
   const audio = document.getElementById('bgMusic');
   audio.volume = 0.5;
   audio.play().catch(() => {
-    document.body.addEventListener('click', () => audio.play(), { once: true });
+    document.body.addEventListener('click', ()=> audio.play(), {once:true});
   });
 
-  // Animate poem lines one by one
-  const lines = document.querySelectorAll('#poem span');
-  lines.forEach((line, index) => {
-    setTimeout(() => {
-      line.style.transition = 'opacity 1s, transform 1s';
-      line.style.opacity = 1;
-      line.style.transform = 'translateY(0)';
-    }, index * 600); // 0.6s between lines
-  });
+  // Hide question & intro
+  document.getElementById('question').style.display='none';
+  document.querySelector('h1').style.display='none';
+  document.getElementById('flowers').style.display='none';
 
-  // Hide start button & intro
-  document.querySelector('button').style.display = 'none';
-  document.querySelector('h1').style.display = 'none';
-  document.getElementById('flowers').style.display = 'none';
+  // Show poem container
+  const poem = document.getElementById('poem');
+  poem.style.display='block';
+
+  // Lyrics-style animation: one line at a time
+  const lines = poem.querySelectorAll('span');
+  let i = 0;
+  function showNextLine() {
+    if (i>0) lines[i-1].style.opacity=0; // hide previous
+    if (i<lines.length){
+      const line = lines[i];
+      line.style.opacity=1;
+      line.style.transition='opacity 1s';
+      i++;
+      setTimeout(showNextLine, 2000); // 2 sec per line
+    }
+  }
+  showNextLine();
 }
 
 // Floating petals
-for (let i = 0; i < 20; i++) {
-  const petal = document.createElement('div');
+for (let i=0;i<20;i++){
+  const petal=document.createElement('div');
   petal.classList.add('petal');
-  const size = Math.random() * 10 + 10;
-  petal.style.width = size + 'px';
-  petal.style.height = size + 'px';
-  petal.style.left = Math.random() * 100 + '%';
-  petal.style.animationDuration = (8 + Math.random() * 5) + 's';
+  const size=Math.random()*10+10;
+  petal.style.width=size+'px';
+  petal.style.height=size+'px';
+  petal.style.left=Math.random()*100+'%';
+  petal.style.animationDuration=(8+Math.random()*5)+'s';
   document.body.appendChild(petal);
 }
 
 // Twemoji parse
-window.addEventListener('load', () => { twemoji.parse(document.body); });
+window.addEventListener('load',()=>{twemoji.parse(document.body)});
 </script>
 </body>
 </html>
