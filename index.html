@@ -1,24 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>For Aayusha 🌸</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Aayusha 🌌</title>
 <style>
 body {
   margin:0;
-  height:100vh;
   font-family:'Segoe UI', sans-serif;
-  color:white;
-  text-align:center;
   overflow:hidden;
-  background:url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
-  background-size:cover;
+  background:#000;
+  color:white;
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  padding:20px;
+  height:100vh;
+  text-align:center;
 }
 h1 {
   font-size:2rem;
@@ -27,35 +25,27 @@ h1 {
   margin:10px;
   animation: fadeIn 3s ease;
 }
-#flowers {
-  display:flex;
-  gap:15px;
-  margin:20px 0;
+input {
+  padding:10px;
+  border-radius:20px;
+  border:none;
+  width:80%;
+  max-width:300px;
+  font-size:1rem;
+  text-align:center;
+  margin-top:10px;
 }
-.flower {
-  width:60px;
-  height:60px;
-  background:radial-gradient(circle, #ffb6c1 30%, #ff69b4 70%);
-  border-radius:50%;
-  position:relative;
-  animation:dance 3s infinite ease-in-out, glow 2s infinite alternate;
+button {
+  margin-top:20px;
+  padding:15px 30px;
+  border-radius:25px;
+  border:none;
+  background:#ff69b4;
+  color:white;
+  font-size:1.2rem;
+  cursor:pointer;
+  transition:0.3s;
 }
-.flower::before, .flower::after {
-  content:'';
-  position:absolute;
-  width:20px;
-  height:20px;
-  background:radial-gradient(circle, #ffb6c1 30%, #ff69b4 70%);
-  border-radius:50%;
-}
-.flower::before { top:-10px; left:20px; }
-.flower::after { bottom:-10px; right:20px; }
-@keyframes dance { 0%,100% { transform: rotate(0deg) scale(1); } 50% { transform: rotate(10deg) scale(1.1); } }
-@keyframes glow { 0% { box-shadow:0 0 5px #ffb6c1; } 50% { box-shadow:0 0 15px #ff69b4; } 100% { box-shadow:0 0 5px #ffb6c1; } }
-@keyframes fadeIn { from {opacity:0; transform:translateY(20px);} to {opacity:1; transform:translateY(0);} }
-
-input { padding:10px; border-radius:20px; border:none; width:80%; max-width:300px; font-size:1rem; text-align:center; }
-button { margin-top:20px; padding:15px 30px; border-radius:25px; border:none; background:#ff69b4; color:white; font-size:1.2rem; cursor:pointer; transition:0.3s; }
 button:hover { background:#ff85c1; }
 
 #teddyContainer {
@@ -66,14 +56,12 @@ button:hover { background:#ff85c1; }
   display:none;
 }
 #teddyContainer img {
-  width:250px; /* made bigger */
+  width:250px;
   max-width:60vw;
-  position:relative;
   border-radius:10px;
   box-shadow:0 0 15px rgba(0,0,0,0.5);
+  position:relative;
 }
-
-/* Speech bubble pointing downwards from lips */
 #speechBubble {
   position:absolute;
   background:rgba(255,255,255,0.9);
@@ -83,143 +71,133 @@ button:hover { background:#ff85c1; }
   font-size:4vw;
   max-width:70vw;
   text-align:center;
-  top:25%; /* adjust to be near lips */
+  top:25%;
   left:50%;
   transform:translateX(-50%);
   display:none;
   box-shadow:0 0 10px rgba(0,0,0,0.5);
 }
 #speechBubble::after {
-  content: '';
-  position: absolute;
-  bottom: -15px; /* tail position */
-  left: 50%;
-  transform: translateX(-50%);
+  content:'';
+  position:absolute;
+  bottom:-15px;
+  left:50%;
+  transform:translateX(-50%);
   border-width: 15px 10px 0 10px;
-  border-style: solid;
+  border-style:solid;
   border-color: rgba(255,255,255,0.9) transparent transparent transparent;
 }
 @media(max-width:768px){
   #speechBubble { font-size:6vw; max-width:80vw; }
 }
 
-.petal {
+#portal {
   position:absolute;
-  background:pink;
-  border-radius:50%;
-  opacity:0.7;
-  animation:fall 10s linear infinite;
+  top:0; left:0;
+  width:100%; height:100%;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  background:#000;
+  flex-direction:column;
 }
-@keyframes fall { from { transform: translateY(-10%) rotate(0deg); opacity:1; } to { transform: translateY(110%) rotate(360deg); opacity:0; } }
+#universeImg {
+  width:0;
+  opacity:0;
+  transition:all 5s ease-in-out;
+}
+#portalText {
+  font-size:5vw;
+  margin-top:20px;
+  opacity:0;
+  transition:opacity 2s ease-in-out;
+}
 </style>
 </head>
 <body>
 
 <audio id="bgMusic" src="https://cdn.pixabay.com/audio/2023/03/14/audio_1c9b56e7cb.mp3" loop></audio>
 
-<h1>🌸 Hi Aayusha, we’ve been waiting for you...<br>Nish has made sure you’re looked after very well.<br>So come along 💫</h1>
-
-<div id="flowers">
-  <div class="flower"></div>
-  <div class="flower"></div>
-  <div class="flower"></div>
+<div id="question1">
+  <h1>What made you fall in love with him?</h1>
+  <input type="text" id="answer1" placeholder="Type here...">
+  <br>
+  <button id="submit1">Submit</button>
 </div>
 
-<div id="question">
-  <p>What’s the thing that made you fall in love with him?</p>
-  <input type="text" id="answer" placeholder="Type your answer..." />
+<div id="question2" style="display:none;">
+  <h1>Do you want to know what he feels?</h1>
+  <input type="text" id="answer2" placeholder="Type yes...">
   <br>
-  <button id="submitBtn">Submit</button>
+  <button id="submit2">Submit</button>
 </div>
 
 <div id="teddyContainer">
-  <img src="1000006812.jpg" alt="Your Image" />
+  <img src="1000006812.jpg" alt="Your Image">
   <div id="speechBubble"></div>
 </div>
 
+<div id="portal">
+  <img id="universeImg" src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1950&q=80" alt="Universe">
+  <div id="portalText">Nothing… You’re just a universe</div>
+</div>
+
 <script>
+// Play music
+const audio = document.getElementById('bgMusic');
+audio.volume=0.5;
+audio.play().catch(()=> {
+  document.body.addEventListener('click', ()=> audio.play(), {once:true});
+});
+
+// First question
 const poemLines = [
   "Hi Aayusha, Nish wants to say...",
   "Honestly I am in love with you",
-  "is that what you want me to say",
-  "is that the collection of words",
-  "you don't expect to hear from me today",
-  "I thought it was pretty obvious",
-  "I don't know how it was easy to miss",
-  "honestly I am in love with you",
-  "and I don't think I can get any clearer than this",
-  "well I mean I could",
-  "I thought about you everyday",
-  "every time that I saw you",
-  "I still have so much left to say",
-  "But then I didn't say it",
-  "honestly I was afraid",
-  "but every time you left",
-  "I wish that you had stayed",
-  "and all these little actions and acts of service in my mind",
-  "my words try to catch up",
-  "but my feelings have never left behind",
-  "I'm going slightly crazy",
-  "is that what you want me to say",
-  "because I know that I am messing up",
-  "I am the one pushing you away",
-  "trust me I am exhausted",
-  "but never of loving you",
-  "I have all these feelings that I thought",
-  "you already knew",
-  "But if you really didn't",
-  "there is a couple of things I must confess",
-  "I don't like a lot of people",
-  "but I love you nevertheless",
-  "every time I see you the whole world goes quiet",
-  "and I am not used to this, my mind loves to riot",
-  "but not about you that has always been clear",
-  "because if I wished for my perfect person",
-  "you would suddenly appear"
+  "is that what you want me to say"
 ];
 
-document.getElementById('submitBtn').addEventListener('click', () => {
-  const answer = document.getElementById('answer').value;
-
-  document.getElementById('question').style.display='none';
-  document.querySelector('h1').style.display='none';
-  document.getElementById('flowers').style.display='none';
-
+document.getElementById('submit1').addEventListener('click', ()=>{
+  const ans1 = document.getElementById('answer1').value;
+  document.getElementById('question1').style.display='none';
   const teddy = document.getElementById('teddyContainer');
   const bubble = document.getElementById('speechBubble');
   teddy.style.display='block';
   bubble.style.display='block';
-
-  // Play music
-  const audio = document.getElementById('bgMusic');
-  audio.volume = 0.5;
-  audio.play().catch(()=>{
-    document.body.addEventListener('click', ()=> audio.play(), {once:true});
-  });
-
-  // Show poem line by line in speech bubble
-  let index = 0;
+  
+  let index=0;
   function showLine(){
-    if(index < poemLines.length){
-      bubble.textContent = poemLines[index];
+    if(index<poemLines.length){
+      bubble.textContent=poemLines[index];
       index++;
-      setTimeout(showLine, 2500);
+      setTimeout(showLine,2000);
+    } else {
+      // After poem, show 2nd question
+      teddy.style.display='none';
+      bubble.style.display='none';
+      document.getElementById('question2').style.display='block';
     }
   }
   showLine();
 });
 
-// Floating petals
-for(let i=0;i<20;i++){
-  const petal=document.createElement('div');
-  petal.classList.add('petal');
-  const size=Math.random()*10+10;
-  petal.style.width=size+'px';
-  petal.style.height=size+'px';
-  petal.style.left=Math.random()*100+'%';
-  petal.style.animationDuration=(8+Math.random()*5)+'s';
-  document.body.appendChild(petal);
-}
+// Second question triggers portal
+document.getElementById('submit2').addEventListener('click', ()=>{
+  const ans2 = document.getElementById('answer2').value;
+  document.getElementById('question2').style.display='none';
+  const portal = document.getElementById('portal');
+  const img = document.getElementById('universeImg');
+  const text = document.getElementById('portalText');
+  portal.style.display='flex';
+  setTimeout(()=>{
+    img.style.width='80%';
+    img.style.opacity='1';
+  },100);
+  setTimeout(()=>{
+    text.style.opacity='1';
+  },3500);
+});
+
 </script>
 </body>
 </html>
