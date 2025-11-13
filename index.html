@@ -1,128 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Aayusha 🌌</title>
-<style>
-body {
-  margin:0;
-  font-family:'Segoe UI', sans-serif;
-  overflow:hidden;
-  background:#000;
-  color:white;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  height:100vh;
-  text-align:center;
-}
-h1 {
-  font-size:2rem;
-  color:#fff;
-  text-shadow:2px 2px 8px #000;
-  margin:10px;
-  animation: fadeIn 3s ease;
-}
-input {
-  padding:10px;
-  border-radius:20px;
-  border:none;
-  width:80%;
-  max-width:300px;
-  font-size:1rem;
-  text-align:center;
-  margin-top:10px;
-}
-button {
-  margin-top:20px;
-  padding:15px 30px;
-  border-radius:25px;
-  border:none;
-  background:#ff69b4;
-  color:white;
-  font-size:1.2rem;
-  cursor:pointer;
-  transition:0.3s;
-}
-button:hover { background:#ff85c1; }
+  <meta charset="UTF‑8">
+  <meta name="viewport" content="width=device‑width, initial‑scale=1.0">
+  <title>For Aayusha 🌸</title>
+  <style>
+    body {
+      margin:0;
+      height:100vh;
+      font‑family:'Segoe UI', sans‑serif;
+      color:white;
+      text‑align:center;
+      overflow:hidden;
+      background:url('https://images.unsplash.com/photo‑1506744038136‑46273834b3fb?auto=format&fit=crop&w=1950&q=80') no‑repeat center center fixed;
+      background‑size:cover;
+      display:flex;
+      flex‑direction:column;
+      align‑items:center;
+      justify‑content:center;
+      padding:20px;
+      transition: background 1s ease;
+    }
+    h1 {
+      font‑size:2rem;
+      color:#fff;
+      text‑shadow:2px 2px 8px #000;
+      margin:10px;
+      animation: fadeIn 3s ease;
+    }
+    @keyframes fadeIn { from {opacity:0; transform:translateY(20px);} to {opacity:1; transform:translateY(0);} }
+    #flowers {
+      display:flex;
+      gap:15px;
+      margin:20px 0;
+    }
+    .flower {
+      width:60px;
+      height:60px;
+      background:radial‑gradient(circle, #ffb6c1 30%, #ff69b4 70%);
+      border‑radius:50%;
+      position:relative;
+      animation:dance 3s infinite ease‑in‑out, glow 2s infinite alternate;
+    }
+    .flower::before, .flower::after {
+      content:'';
+      position:absolute;
+      width:20px; height:20px;
+      background:radial‑gradient(circle, #ffb6c1 30%, #ff69b4 70%);
+      border‑radius:50%;
+    }
+    .flower::before { top:-10px; left:20px; }
+    .flower::after { bottom:-10px; right:20px; }
+    @keyframes dance {
+      0%,100% { transform:rotate(0deg) scale(1); }
+      50% { transform:rotate(10deg) scale(1.1); }
+    }
+    @keyframes glow {
+      0% { box‑shadow:0 0 5px #ffb6c1; }
+      50% { box‑shadow:0 0 15px #ff69b4; }
+      100% { box‑shadow:0 0 5px #ffb6c1; }
+    }
+    input {
+      padding:10px; border‑radius:20px; border:none;
+      width:80%; max‑width:300px; font‑size:1rem; text‑align:center;
+    }
+    button {
+      margin‑top:20px; padding:15px 30px; border‑radius:25px; border:none;
+      background:#ff69b4; color:white; font‑size:1.2rem; cursor:pointer; transition:0.3s;
+    }
+    button:hover { background:#ff85c1; }
 
-#teddyContainer {
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  display:none;
-}
-#teddyContainer img {
-  width:250px;
-  max-width:60vw;
-  border-radius:10px;
-  box-shadow:0 0 15px rgba(0,0,0,0.5);
-  position:relative;
-}
-#speechBubble {
-  position:absolute;
-  background:rgba(255,255,255,0.9);
-  color:#333;
-  padding:15px 20px;
-  border-radius:20px;
-  font-size:4vw;
-  max-width:70vw;
-  text-align:center;
-  top:25%;
-  left:50%;
-  transform:translateX(-50%);
-  display:none;
-  box-shadow:0 0 10px rgba(0,0,0,0.5);
-}
-#speechBubble::after {
-  content:'';
-  position:absolute;
-  bottom:-15px;
-  left:50%;
-  transform:translateX(-50%);
-  border-width: 15px 10px 0 10px;
-  border-style:solid;
-  border-color: rgba(255,255,255,0.9) transparent transparent transparent;
-}
-@media(max-width:768px){
-  #speechBubble { font-size:6vw; max-width:80vw; }
-}
+    /* Speech container for first question */
+    #speechContainer {
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform:translate(‑50%,‑50%);
+      display:none;
+      flex‑direction:column;
+      align‑items:center;
+    }
+    #speechContainer img {
+      width:180px; max‑width:50vw; border‑radius:10px; box‑shadow:0 0 15px rgba(0,0,0,0.5);
+    }
+    #speechText {
+      margin‑top:15px; background:rgba(255,255,255,0.9); color:#333;
+      padding:15px 20px; border‑radius:20px; font‑size:4vw;
+      max‑width:70vw; text‑align:center;
+    }
+    @media(max‑width:768px){
+      #speechText { font‑size:6vw; max‑width:80vw; }
+    }
 
-#portal {
-  position:absolute;
-  top:0; left:0;
-  width:100%; height:100%;
-  display:none;
-  justify-content:center;
-  align-items:center;
-  background:#000;
-  flex-direction:column;
-}
-#universeImg {
-  width:0;
-  opacity:0;
-  transition:all 5s ease-in-out;
-}
-#portalText {
-  font-size:5vw;
-  margin-top:20px;
-  opacity:0;
-  transition:opacity 2s ease-in-out;
-}
-</style>
+    /* Rainbow background for second question */
+    .rainbowBG {
+      animation: rainbow 5s infinite alternate;
+    }
+    @keyframes rainbow {
+      0% { background: #ffadad; }
+      25% { background: #ffd6a5; }
+      50% { background: #fdffb6; }
+      75% { background: #caffbf; }
+      100% { background: #9bf6ff; }
+    }
+
+    /* Portal / space travel */
+    #portal {
+      position:absolute;
+      top:0; left:0;
+      width:100%; height:100%;
+      display:none;
+      justify‑content:center;
+      align‑items:center;
+      flex‑direction:column;
+      background:black;
+    }
+    #travelImg {
+      width:0;
+      opacity:0;
+      transition: all 5s ease‑in‑out;
+    }
+    #universeText {
+      font‑size:5vw; color:white; text‑shadow:2px2px10px #000;
+      margin‑top:20px;
+      opacity:0;
+      transition: opacity 2s ease‑in‑out 4s;
+    }
+  </style>
 </head>
 <body>
 
-<audio id="bgMusic" src="https://cdn.pixabay.com/audio/2023/03/14/audio_1c9b56e7cb.mp3" loop></audio>
+<audio id="bgMusic" src="https://cdn.pixabay.com/audio/2022/05/06/sample‑space‑ambient.mp3" loop></audio>
 
 <div id="question1">
-  <h1>What made you fall in love with him?</h1>
-  <input type="text" id="answer1" placeholder="Type here...">
+  <h1>🌸 Hi Aayusha, we’ve been waiting for you...<br>Nish has made sure you’re looked after very well.<br>So come along 💫</h1>
+  <div id="flowers">
+    <div class="flower"></div>
+    <div class="flower"></div>
+    <div class="flower"></div>
+  </div>
+  <p>What’s the thing that made you fall in love with him?</p>
+  <input type="text" id="answer1" placeholder="Type your answer...">
   <br>
   <button id="submit1">Submit</button>
+</div>
+
+<div id="speechContainer">
+  <img src="1000006812.jpg" alt="You">
+  <div id="speechText"></div>
 </div>
 
 <div id="question2" style="display:none;">
@@ -132,72 +157,80 @@ button:hover { background:#ff85c1; }
   <button id="submit2">Submit</button>
 </div>
 
-<div id="teddyContainer">
-  <img src="1000006812.jpg" alt="Your Image">
-  <div id="speechBubble"></div>
-</div>
-
 <div id="portal">
-  <img id="universeImg" src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1950&q=80" alt="Universe">
-  <div id="portalText">Nothing… You’re just a universe</div>
+  <img id="travelImg" src="https://images.unsplash.com/photo‑1496284045406‑946a60692ad1?auto=format&fit=crop&w=1950&q=80" alt="Travel">
+  <div id="universeText">Nothing… You’re just a universe</div>
 </div>
 
 <script>
-// Play music
-const audio = document.getElementById('bgMusic');
-audio.volume=0.5;
-audio.play().catch(()=> {
-  document.body.addEventListener('click', ()=> audio.play(), {once:true});
-});
-
-// First question
-const poemLines = [
-  "Hi Aayusha, Nish wants to say...",
+const lines1 = [
   "Honestly I am in love with you",
-  "is that what you want me to say"
+  "is that what you want me to say",
+  "is that the collection of words",
+  "you don't expect to hear from me today",
+  "I thought it was pretty obvious",
+  "I don't know how it was easy to miss",
+  "honestly I am in love with you",
+  "and I don't think I can get any clearer than this"
 ];
+
+const audio = document.getElementById('bgMusic');
+audio.volume = 0.5;
+audio.play().catch(()=>{
+  document.body.addEventListener('click',()=>audio.play(),{once:true});
+});
 
 document.getElementById('submit1').addEventListener('click', ()=>{
   const ans1 = document.getElementById('answer1').value;
+
   document.getElementById('question1').style.display='none';
-  const teddy = document.getElementById('teddyContainer');
-  const bubble = document.getElementById('speechBubble');
-  teddy.style.display='block';
-  bubble.style.display='block';
-  
-  let index=0;
-  function showLine(){
-    if(index<poemLines.length){
-      bubble.textContent=poemLines[index];
-      index++;
-      setTimeout(showLine,2000);
+  const speech = document.getElementById('speechContainer');
+  speech.style.display='flex';
+
+  let idx=0;
+  function show1(){
+    if(idx < lines1.length){
+      document.getElementById('speechText').textContent = lines1[idx];
+      idx++;
+      setTimeout(show1, 2000);
     } else {
-      // After poem, show 2nd question
-      teddy.style.display='none';
-      bubble.style.display='none';
+      speech.style.display='none';
       document.getElementById('question2').style.display='block';
+      document.body.classList.add('rainbowBG');
     }
   }
-  showLine();
+  show1();
 });
 
-// Second question triggers portal
 document.getElementById('submit2').addEventListener('click', ()=>{
   const ans2 = document.getElementById('answer2').value;
+
   document.getElementById('question2').style.display='none';
+  document.body.classList.remove('rainbowBG');
   const portal = document.getElementById('portal');
-  const img = document.getElementById('universeImg');
-  const text = document.getElementById('portalText');
   portal.style.display='flex';
+
+  const img = document.getElementById('travelImg');
+  img.style.width='80%';
+  img.style.opacity=1;
+
   setTimeout(()=>{
-    img.style.width='80%';
-    img.style.opacity='1';
-  },100);
-  setTimeout(()=>{
-    text.style.opacity='1';
-  },3500);
+    document.getElementById('universeText').style.opacity=1;
+  },5000);
 });
 
+// Floating petals
+for(let i=0;i<20;i++){
+  const petal=document.createElement('div');
+  petal.classList.add('petal');
+  const size = Math.random()*10+10;
+  petal.style.width=size+'px';
+  petal.style.height=size+'px';
+  petal.style.left=Math.random()*100+'%';
+  petal.style.animationDuration=(8+Math.random()*5)+'s';
+  document.body.appendChild(petal);
+}
 </script>
+
 </body>
 </html>
