@@ -7,108 +7,110 @@
 <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js"></script>
 <style>
 body {
-  margin: 0;
-  height: 100vh;
-  font-family: 'Segoe UI', sans-serif;
-  color: white;
-  text-align: center;
-  overflow: hidden;
-  background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
-  background-size: cover;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  padding-top: 20px;
+  margin:0;
+  height:100vh;
+  font-family:'Segoe UI', sans-serif;
+  color:white;
+  text-align:center;
+  overflow:hidden;
+  background:url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+  background-size:cover;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
 }
-
 h1 {
-  font-size: 2rem;
-  color: #fff;
-  text-shadow: 2px 2px 8px #000;
-  margin: 10px;
+  font-size:2rem;
+  color:#fff;
+  text-shadow:2px 2px 8px #000;
+  margin:10px;
   animation: fadeIn 3s ease;
 }
-
 #flowers {
-  display: flex;
-  gap: 15px;
-  margin: 20px 0;
+  display:flex;
+  gap:15px;
+  margin:20px 0;
 }
-
 .flower {
-  width: 60px;
-  height: 60px;
-  background: radial-gradient(circle, #ffb6c1 30%, #ff69b4 70%);
-  border-radius: 50%;
-  position: relative;
-  animation: dance 3s infinite ease-in-out, glow 2s infinite alternate;
+  width:60px;
+  height:60px;
+  background:radial-gradient(circle, #ffb6c1 30%, #ff69b4 70%);
+  border-radius:50%;
+  position:relative;
+  animation:dance 3s infinite ease-in-out, glow 2s infinite alternate;
 }
 .flower::before, .flower::after {
-  content: '';
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background: radial-gradient(circle, #ffb6c1 30%, #ff69b4 70%);
-  border-radius: 50%;
+  content:'';
+  position:absolute;
+  width:20px;
+  height:20px;
+  background:radial-gradient(circle, #ffb6c1 30%, #ff69b4 70%);
+  border-radius:50%;
 }
-.flower::before { top: -10px; left: 20px; }
-.flower::after { bottom: -10px; right: 20px; }
-
+.flower::before { top:-10px; left:20px; }
+.flower::after { bottom:-10px; right:20px; }
 @keyframes dance {
   0%,100% { transform: rotate(0deg) scale(1); }
   50% { transform: rotate(10deg) scale(1.1); }
 }
 @keyframes glow {
-  0% { box-shadow: 0 0 5px #ffb6c1; }
-  50% { box-shadow: 0 0 15px #ff69b4; }
-  100% { box-shadow: 0 0 5px #ffb6c1; }
+  0% { box-shadow:0 0 5px #ffb6c1; }
+  50% { box-shadow:0 0 15px #ff69b4; }
+  100% { box-shadow:0 0 5px #ffb6c1; }
 }
-@keyframes fadeIn { from { opacity:0; transform:translateY(20px);} to{opacity:1; transform:translateY(0);} }
+@keyframes fadeIn { from {opacity:0; transform:translateY(20px);} to {opacity:1; transform:translateY(0);} }
 
 input {
-  padding: 10px;
-  border-radius: 20px;
-  border: none;
-  width: 240px;
-  font-size: 1rem;
-  text-align: center;
+  padding:10px;
+  border-radius:20px;
+  border:none;
+  width:240px;
+  font-size:1rem;
+  text-align:center;
 }
 button {
-  margin-top: 10px;
-  padding: 10px 20px;
-  border-radius: 20px;
-  border: none;
-  background: #ff69b4;
-  color: white;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: 0.3s;
+  margin-top:20px;
+  padding:15px 30px;
+  border-radius:25px;
+  border:none;
+  background:#ff69b4;
+  color:white;
+  font-size:1.2rem;
+  cursor:pointer;
+  transition:0.3s;
 }
-button:hover { background: #ff85c1; }
+button:hover { background:#ff85c1; }
 
 #poem {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 3rem;
-  font-weight: bold;
-  color: white;
-  text-shadow: 2px 2px 8px #000;
-  text-align: center;
-  line-height: 1.5;
-  max-width: 90%;
-  display: none; /* hidden initially */
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  font-size:3rem;
+  font-weight:bold;
+  color:white;
+  text-shadow:2px 2px 8px #000;
+  text-align:center;
+  line-height:1.5;
+  max-width:90%;
+  display:none;
+  overflow:hidden;
 }
-#poem span { display:block; opacity:0; }
+#poem span {
+  display:block;
+  opacity:0;
+  transform:translateX(-100%);
+  white-space:nowrap;
+}
 
 .petal {
-  position: absolute;
-  background: pink;
-  border-radius: 50%;
-  opacity: 0.7;
-  animation: fall 10s linear infinite;
+  position:absolute;
+  background:pink;
+  border-radius:50%;
+  opacity:0.7;
+  animation:fall 10s linear infinite;
 }
 @keyframes fall {
   from { transform: translateY(-10%) rotate(0deg); opacity:1; }
@@ -132,7 +134,7 @@ button:hover { background: #ff85c1; }
   <p>What’s the thing that made you fall in love with him?</p>
   <input type="text" id="answer" placeholder="Type your answer..." />
   <br>
-  <button onclick="submitAnswer()">Submit</button>
+  <button id="submitBtn">Submit</button>
 </div>
 
 <div id="poem">
@@ -175,9 +177,18 @@ button:hover { background: #ff85c1; }
 </div>
 
 <script>
-function submitAnswer() {
+document.getElementById('submitBtn').addEventListener('click', () => {
   const answer = document.getElementById('answer').value;
-  console.log("Her answer:", answer); // optional
+  console.log('Her answer:', answer);
+
+  // Hide intro & question
+  document.getElementById('question').style.display='none';
+  document.querySelector('h1').style.display='none';
+  document.getElementById('flowers').style.display='none';
+
+  // Show poem container
+  const poemEl = document.getElementById('poem');
+  poemEl.style.display='block';
 
   // Play music reliably
   const audio = document.getElementById('bgMusic');
@@ -186,33 +197,30 @@ function submitAnswer() {
     document.body.addEventListener('click', ()=> audio.play(), {once:true});
   });
 
-  // Hide question & intro
-  document.getElementById('question').style.display='none';
-  document.querySelector('h1').style.display='none';
-  document.getElementById('flowers').style.display='none';
-
-  // Show poem container
-  const poem = document.getElementById('poem');
-  poem.style.display='block';
-
-  // Lyrics-style animation: one line at a time
-  const lines = poem.querySelectorAll('span');
-  let i = 0;
-  function showNextLine() {
-    if (i>0) lines[i-1].style.opacity=0; // hide previous
-    if (i<lines.length){
-      const line = lines[i];
+  // Lyrics sliding animation one line at a time
+  const lines = poemEl.querySelectorAll('span');
+  let index=0;
+  function animateLine(){
+    if(index>0){
+      const prev=lines[index-1];
+      prev.style.transition='transform 1s, opacity 1s';
+      prev.style.transform='translateX(100%)';
+      prev.style.opacity=0;
+    }
+    if(index<lines.length){
+      const line=lines[index];
+      line.style.transition='transform 1s, opacity 1s';
+      line.style.transform='translateX(0)';
       line.style.opacity=1;
-      line.style.transition='opacity 1s';
-      i++;
-      setTimeout(showNextLine, 2000); // 2 sec per line
+      index++;
+      setTimeout(animateLine, 2500);
     }
   }
-  showNextLine();
-}
+  animateLine();
+});
 
 // Floating petals
-for (let i=0;i<20;i++){
+for(let i=0;i<20;i++){
   const petal=document.createElement('div');
   petal.classList.add('petal');
   const size=Math.random()*10+10;
@@ -226,5 +234,6 @@ for (let i=0;i<20;i++){
 // Twemoji parse
 window.addEventListener('load',()=>{twemoji.parse(document.body)});
 </script>
+
 </body>
 </html>
